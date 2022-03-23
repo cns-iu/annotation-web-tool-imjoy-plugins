@@ -1,0 +1,39 @@
+{
+ "name": "CNS ImJoy Repository",
+ "description": "ImJoy plugin repository for the Cyberinfrastructure For Network Science Center.",
+ "version": "0.2.0",
+ "uri_root": "",
+ "plugins": [
+  {
+   "name": "FTUAnnotator",
+   "type": "window",
+   "tags": [],
+   "ui": "",
+   "version": "0.1.84",
+   "api_version": "0.1.7",
+   "description": "Annotate FTUs in biomedical images",
+   "icon": "extension",
+   "inputs": null,
+   "outputs": null,
+   "env": "",
+   "permissions": [],
+   "requirements": [
+    "https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js",
+    "https://static.imjoy.io/spectre.css/spectre.min.css",
+    "https://static.imjoy.io/spectre.css/spectre-exp.min.css",
+    "https://static.imjoy.io/spectre.css/spectre-icons.min.css",
+    "https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.1.1/css/ol.css",
+    "https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.1.1/build/ol.js",
+    "https://www.gstatic.com/charts/loader.js",
+    "https://www.google.com/jsapi"
+   ],
+   "dependencies": [],
+   "defaults": {
+    "fullscreen": true
+   },
+   "runnable": true,
+   "uri": "src/FTUAnnotator.imjoy.html"
+  }
+ ],
+ "collections": []
+}
