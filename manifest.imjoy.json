@@ -1,6 +1,6 @@
 {
  "name": "CNS ImJoy Repository",
- "description": "ImJoy plugin repository for the Cyberinfrastructure For Network Science Center.",
+ "description": "ImJoy plugin repository for the Cyberinfrastructure For Network Science Center, based on HPA SingleCellAnnotator.",
  "version": "0.2.0",
  "uri_root": "",
  "plugins": [
