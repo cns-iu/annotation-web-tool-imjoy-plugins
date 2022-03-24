@@ -1,4 +1,4 @@
-# ImJoy Plugins for CNS Annotation Tools[![powered by ImJoy](https://imjoy.io/static/badge/powered-by-imjoy-badge.svg)](https://imjoy.io/)
+# ImJoy Plugins for CNS Annotation Tools [![powered by ImJoy](https://imjoy.io/static/badge/powered-by-imjoy-badge.svg)](https://imjoy.io/)
 
 Click here [![launch ImJoy](https://imjoy.io/static/badge/launch-imjoy-badge.svg)](http://imjoy.io/#/app?plugin=https://github.com/J-Yash/annotation-web-tool-imjoy-plugins/blob/main/src/CNS-FTUAnnotator.imjoy.html&start=CNS-FTUAnnotator) to launch the app plugin.
 
