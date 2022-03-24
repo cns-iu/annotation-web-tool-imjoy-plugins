@@ -4,13 +4,13 @@
 
 <config lang="json">
 {
-  "name": "FTUAnnotator",
+  "name": "CNS-FTUAnnotator",
   "type": "window",
   "tags": [],
   "ui": "",
   "version": "0.1.84",
   "api_version": "0.1.7",
-  "description": "Annotate FTUs in biomedical images",
+  "description": "Annotate FTUs in biomedical images, based on HPA SingeCellAnnotator",
   "icon": "extension",
   "inputs": null,
   "outputs": null,
@@ -585,7 +585,7 @@ const app = new Vue({
       console.log(JSON.stringify(theData))
       const modifiedData = Object.assign({}, theData)
       let xyLabels = ['Task', 'Counts']
-      if(idName.includes('Average time elasped')){
+      if(idName.includes('Average time elapsed')){
         xyLabels = ['Task', 's/image']
         const keyGroup = Object.keys(theData)
         const valueGroup = Object.values(theData)

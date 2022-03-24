@@ -5,13 +5,13 @@
  "uri_root": "",
  "plugins": [
   {
-   "name": "FTUAnnotator",
+   "name": "CNS-FTUAnnotator",
    "type": "window",
    "tags": [],
    "ui": "",
    "version": "0.1.84",
    "api_version": "0.1.7",
-   "description": "Annotate FTUs in biomedical images",
+   "description": "Annotate FTUs in biomedical images, based on HPA SingeCellAnnotator",
    "icon": "extension",
    "inputs": null,
    "outputs": null,
@@ -32,7 +32,7 @@
     "fullscreen": true
    },
    "runnable": true,
-   "uri": "src/FTUAnnotator.imjoy.html"
+   "uri": "src/CNS-FTUAnnotator.imjoy.html"
   }
  ],
  "collections": []
