@@ -651,11 +651,8 @@ const app = new Vue({
       let image_url = "/images/" + this.current_task_name + "/" + imageData.cell_id;
       imageData.extend = this.current_extend_value;
       image_url += "?extend="+imageData.extend+"&maskout=1";
-      console.log("$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$$#$#")
-      console.log(image_url)
-      console.log("$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$$#$#")
       const response = await this.fetchURLData(image_url)
-      console.log(response);
+      //console.log(response);
       imageData.bbox = response.bbox;
       imageData.mask_geojson = response.mask;
       //ER, Microtubule, Nuclei, Protein,
@@ -663,9 +660,7 @@ const app = new Vue({
       if(!response.available_labels){
         throw new Error("no available labels.")
       }
-      console.log("TEST LOGGING2");
       imageData.exclusive_labels = response.available_labels.exclusive_labels;
-      console.log("TEST LOGGING3");
       //if(response.available_labels.location_labels){console.log("TEST LOGGING4");
       if(false){
         const labels = Object.keys(response.available_labels.location_labels);
@@ -682,23 +677,23 @@ const app = new Vue({
         
         imageData.saved_location_label = Object.assign({}, imageData.location_labels)
       }
-      else{console.log("TEST LOGGING5");
+      else{
         imageData.label_display_mode = 'mask'
       }
-      console.log("TEST LOGGING6");
+      
       // record the current cell indice list
       this.updateSavedCellIdx(imageData)
-      console.log("TEST LOGGING7");
+      
       return imageData
     },
     updateSavedCellIdx(imageData){
       imageData.saved_cell_idx_list = []
-      console.log("TEST LOGGING8");
+      
       const features = imageData.mask_geojson.features; //.features
-      console.log("TEST LOGGING9");
-      console.log(features);
+      
+      
       imageData.max_cell_id = -1
-      for (let i = 0; i < features.length; i++){console.log("TEST LOGGING10");
+      for (let i = 0; i < features.length; i++){
         if(features[i].properties && typeof features[i].properties.cell_idx === 'number'){
           if(imageData.max_cell_id< features[i].properties.cell_idx){
             imageData.max_cell_id = features[i].properties.cell_idx
@@ -768,12 +763,9 @@ const app = new Vue({
         }
         const response = await this.fetchURLData(url);
         const tasks = response.tasks;
-        console.log("LOGGING func getNewImageBatch response tasks");
-        console.log(tasks);
-        console.log(tasks.length);
+        
         if(tasks.length<=0){
-          console.log("LOGGING func getNewImageBatch task if condition");
-        console.log(tasks.length);
+          
           api.showMessage('No more images in this task.')
           return
         }
@@ -798,7 +790,7 @@ const app = new Vue({
         // remove older images
         if(this.cached_image_data.length>this.cell_per_batch*3){
           this.cached_image_data = this.cached_image_data.slice(this.cell_per_batch)
-          console.log('Removing images from the cache.',  this.cached_image_data.length)
+          
         }
         api.showProgress(100)
         if(!this.isMobile) api.showStatus(`A new batch with ${tasks.length} images loaded`)
@@ -826,16 +818,12 @@ const app = new Vue({
       await this.showImage(this.cached_image_data[this.current_image_index]);
     },
     loadMoreIfNeeded(){
-      console.log("LOGGING func loadMoreIfNeeded");
-      console.log(this.current_image_data);
+      
       this.current_image_index = this.cached_image_data.indexOf(this.current_image_data)
-      console.log(this.current_image_index);
-      console.log(this.cached_image_data.length);
-      console.log(this.current_image_index>=this.cached_image_data.length-1)
+      
       // when we reach 70% of the the cached images
       if(this.current_image_index>=this.cached_image_data.length-1){
-        console.log("LOGGING func loadMoreIfNeeded if condition");
-        console.log(this.current_image_data);
+        
         this.getNewImageBatch(this.current_task_name)
       }
     },
@@ -850,22 +838,16 @@ const app = new Vue({
       if(this.current_image_data.labels_changed){
         await this.uploadAnnotation();
       }
-      console.log("LOGGING func nextImage current image index");
-      console.log(this.current_image_index);
+      
       this.current_image_index++;
       
-      console.log(this.current_image_index);
-      console.log("LOGGING func nextImage before if cached image condition ");
-      console.log(this.cached_image_data[this.current_image_index]);
+      
       if(this.cached_image_data[this.current_image_index]){
-        console.log("LOGGING func nextImage inside if cached image condition");
-        console.log(this.cached_image_data[this.current_image_index]);
+        
         await this.showImage(this.cached_image_data[this.current_image_index]);
       }
       await this.getTaskList();
-      console.log("BLABLABLA");
-      console.log(this.tasks)
-      console.log(this.tasks[this.current_task_name].finished)
+      
       if(this.tasks[this.current_task_name].finished === this.tasks[this.current_task_name].total){
         this.home();
         api.showMessage('No more images in this task.');
@@ -912,7 +894,7 @@ const app = new Vue({
         return
       }
       if(!this.isMobile) api.showStatus(imageData.cell_id)
-      console.log('current image: ', imageData)
+      
       this.current_image_data = imageData;
       imageData.start_time = new Date().getTime();
       // annotation viewer
@@ -1567,7 +1549,8 @@ api.export(new ImJoyPlugin())
           <input type="checkbox" v-model="draw_mask_mode" @change="drawMaskModeChanged">
           <i class="form-icon"></i> <span class="hide-on-mobile">Redraw Mask</span>
         </label> -->
-        <button style="background-color:transparent" class="btn" title="report" @click="report()"><i class="icon icon-share"></i></button>&nbsp;&nbsp;
+        <!-- <button style="background-color:transparent" class="btn" title="report" @click="report()"><i class="icon icon-share"></i></button>&nbsp;&nbsp;
+        -->
         <label class="form-switch " v-show="current_task_name === 'segmentation'">
           <input type="checkbox" v-model="freehand_mode" @change="freehandChanged">
           <i class="form-icon"></i> <span class="hide-on-mobile">Freehand</span>
@@ -1587,8 +1570,9 @@ api.export(new ImJoyPlugin())
         </label>
          <button :disabled="loading" v-show="current_task_name === 'segmentation'" :class="{'exclusive-label-btn': current_image_data.exclusive_label === 'Discard'}" class="btn btn-sm small-btn channel-controls" @click="toggleExclusiveLabels('Discard')">Discard</button>
         <button :disabled="!mask_history||mask_history.length<=0" v-show="current_task_name === 'segmentation'" class="btn btn-sm small-btn channel-controls" @click="undoAnnotation()">Undo</button>
-        <button class="btn btn-sm s-circle channel-controls" style="background-color: transparent;" title="info" @click="info()"><i class="icon icon-message"></i></button>
-      </div>
+        <!-- <button class="btn btn-sm s-circle channel-controls" style="background-color: transparent;" title="info" @click="info()"><i class="icon icon-message"></i></button>
+        -->
+        </div>
       <template v-if="current_image_data.label_display_mode==='multiple'">
         <div v-show="!hide_controls" class="floating-right-btn">
           <div class="columns">
